@@ -2,6 +2,7 @@ package com.techelevator.view;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -11,6 +12,8 @@ public class SelectProduct {
     private Scanner in;
     private String itemCodes = "A1A2A3A4B1B2B3B4C1C2C3C4D1D2D3D4";
     private double updatedMoney = 0;
+    private int newQuantity;
+//    private Map<String, Integer> newQuantity = new LinkedHashMap();
 
     public SelectProduct(InputStream input, OutputStream output) throws FileNotFoundException {
         this.out = new PrintWriter(output);
@@ -31,7 +34,7 @@ public class SelectProduct {
         Scanner invItems = new Scanner(vendingItems);
         String aLine = "";
 
-
+//        newQuantity.putAll(selectInventory.getQuantityItem());
 
 
         if (!itemCodes.contains(inputLine)) {
@@ -44,7 +47,7 @@ public class SelectProduct {
 
 
                     if (itemProperties[0].contains(inputLine) && itemProperties[3].equals("Chip")) {
-                        //selectInventory.getQuantityItem().put(inputLine, (selectInventory.getQuantityItem().get(inputLine) - 1));
+
                         System.out.println(itemProperties[1] + " Item Cost: $" + itemProperties[2] + " Current Money: $" + (currentMoney - Double.parseDouble(itemProperties[2])) + "\nCrunch Crunch, Yum!");
                         updatedMoney = currentMoney - Double.parseDouble(itemProperties[2]);
                     }
@@ -60,18 +63,27 @@ public class SelectProduct {
 
                     if (itemProperties[0].contains(inputLine) && itemProperties[3].equals("Gum")) {
                         System.out.println(itemProperties[1] + " Item Cost: $" + itemProperties[2] + " Current Money: $" + (currentMoney - Double.parseDouble(itemProperties[2])) + "\nChew Chew, Yum!");
-                        updatedMoney = currentMoney-Double.parseDouble(itemProperties[2]);
+                        updatedMoney = currentMoney - Double.parseDouble(itemProperties[2]);
 
                     }
+                    newQuantity = selectInventory.getQuantity() - 1;
+//                newQuantity.put(inputLine, newQuantity.get(inputLine)-1);
                 }
+
             }
 
         }
 
+//    public Map<String, Integer> getNewQuantity() {
+//        return newQuantity;
+//    }
 
     public double getAmount () {
         return updatedMoney;
     }
 
+    public int getNewQuantity() {
+        return newQuantity;
+    }
 
 }
