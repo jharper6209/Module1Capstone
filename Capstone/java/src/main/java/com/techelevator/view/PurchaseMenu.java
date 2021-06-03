@@ -21,11 +21,13 @@ public class PurchaseMenu {
     }
     public void run() throws FileNotFoundException {
 
-        System.out.println("Current Money Provided: $" + currentMoney);
+
 
         boolean shouldProcess = true;         // Loop control variable
 
         while(shouldProcess) {                // Loop until user indicates they want to exit
+
+            System.out.println("Current Money Provided: $" + currentMoney);
 
             String choice = (String)purchaseMenu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);  // Display menu and get choice
 
@@ -33,7 +35,6 @@ public class PurchaseMenu {
 
                 case PURCHASE_MENU_OPTION_FEED_MONEY:
                     feedMoney();           // invoke method to display items in Vending Machine
-
                     break;                    // Exit switch statement
 
                 case PURCHASE_MENU_OPTION_SELECT_PRODUCT:
@@ -51,7 +52,8 @@ public class PurchaseMenu {
 
     public void feedMoney() {      // static attribute used as method is not associated with specific object instance
        // Code to feed money
-        FeedMoney fedMoney = new FeedMoney();
+        FeedMoney fedMoney = new FeedMoney(System.in, System.out);
+        currentMoney = fedMoney.feedMoney();
 
     }
 

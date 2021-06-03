@@ -1,26 +1,34 @@
 package com.techelevator.view;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.Scanner;
 
 public class Inventory {
 
+
+    private PrintWriter out;
+    private Scanner in;
     private final int INITIAL_QUANTITY = 5;
 
-    public Inventory() throws FileNotFoundException {
+    public Inventory(InputStream input, OutputStream output) {
+        this.out = new PrintWriter(output);
+        this.in = new Scanner(input);
+    }
 
-        File vendingItems = new File("./Capstone/vendingmachine.csv");
-        Scanner invItems = new Scanner(vendingItems);
-        String aLine = "";
+    public void getInventory() throws FileNotFoundException {
 
-        int remainingQuantity = INITIAL_QUANTITY;
+            File vendingItems = new File("./Capstone/vendingmachine.csv");
+            Scanner invItems = new Scanner(vendingItems);
+            String aLine = "";
 
-        while (invItems.hasNextLine()) {
+            int remainingQuantity = INITIAL_QUANTITY;
 
-            aLine = invItems.nextLine();
+            while (invItems.hasNextLine()) {
 
-            System.out.println("Item: " + aLine + " \nRemaining Quantity: " + remainingQuantity);
+                aLine = invItems.nextLine();
+
+                System.out.println("Item: " + aLine + " \nRemaining Quantity: " + remainingQuantity);
+            }
         }
     }
-}
+

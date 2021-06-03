@@ -81,8 +81,8 @@ public class VendingMachineCLI {
  ********************************************************************************************************/
 	public void displayItems() throws FileNotFoundException {      // static attribute used as method is not associated with specific object instance
 
-		Inventory newInventory = new Inventory();					// Code to display items from Vending Machine
-
+		Inventory newInventory = new Inventory(System.in, System.out);					// Code to display items from Vending Machine
+		newInventory.getInventory();
 	}
 	
 	public void purchaseItems() throws FileNotFoundException {	 // static attribute used as method is not associated with specific object instance
