@@ -10,7 +10,13 @@ package com.techelevator;
 *  
 *  Your code vending machine related code should be placed in here
 ***************************************************************************************************************************/
+import com.techelevator.view.Inventory;
 import com.techelevator.view.Menu;         // Gain access to Menu class provided for the Capstone
+import com.techelevator.view.PurchaseMenu;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class VendingMachineCLI {
 
@@ -43,7 +49,7 @@ public class VendingMachineCLI {
 	*
 	***************************************************************************************************************************/
 
-	public void run() {
+	public void run() throws FileNotFoundException {
 		
 		
 		boolean shouldProcess = true;         // Loop control variable
@@ -73,15 +79,23 @@ public class VendingMachineCLI {
 /********************************************************************************************************
  * Methods used to perform processing
  ********************************************************************************************************/
-	public void displayItems() {      // static attribute used as method is not associated with specific object instance
-		// Code to display items from Vending Machine
+	public void displayItems() throws FileNotFoundException {      // static attribute used as method is not associated with specific object instance
+
+		Inventory newInventory = new Inventory();					// Code to display items from Vending Machine
+
 	}
 	
-	public void purchaseItems() {	 // static attribute used as method is not associated with specific object instance
+	public void purchaseItems() throws FileNotFoundException {	 // static attribute used as method is not associated with specific object instance
 		// Code to purchase items from Vending Machine
+		Menu purchaseMenu = new Menu(System.in, System.out);
+		PurchaseMenu myPurchase = new PurchaseMenu(purchaseMenu);
+		myPurchase.run();
 	}
 	
 	public void endMethodProcessing() { // static attribute used as method is not associated with specific object instance
 		// Any processing that needs to be done before method ends
+		System.out.println("$$$$$$$$$$$$$$$$");
+		System.out.println("HAVE A NICE DAY!");
+		System.out.println("$$$$$$$$$$$$$$$$");
 	}
 }
