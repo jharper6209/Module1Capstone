@@ -21,6 +21,6 @@ public class FeedMoney {
         int fedMoney = 0;
         String feedMoneyLine = theKeyboard.nextLine();
         return fedMoney = Integer.parseInt(feedMoneyLine);
-
     }
+
 }

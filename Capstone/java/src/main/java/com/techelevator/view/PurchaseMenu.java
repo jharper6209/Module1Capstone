@@ -12,7 +12,7 @@ public class PurchaseMenu {
             PURCHASE_MENU_OPTION_SELECT_PRODUCT,
             PURCHASE_MENU_OPTION_FINISH_TRANSACTION};
 
-    private static int currentMoney;
+    private static double currentMoney;
 
     private Menu purchaseMenu;
 
@@ -53,17 +53,19 @@ public class PurchaseMenu {
     public void feedMoney() {      // static attribute used as method is not associated with specific object instance
        // Code to feed money
         FeedMoney fedMoney = new FeedMoney(System.in, System.out);
-        currentMoney = fedMoney.feedMoney();
+        currentMoney = currentMoney + fedMoney.feedMoney();
 
     }
 
-    public void selectProduct() {	 // static attribute used as method is not associated with specific object instance
+    public void selectProduct() throws FileNotFoundException {	 // static attribute used as method is not associated with specific object instance
         // Code to select product from Vending Machine inventory
+        SelectProduct myProduct = new SelectProduct(System.in, System.out);
+        myProduct.selectProduct(currentMoney);
+        currentMoney = myProduct.getAmount();
     }
 
     public void finishTransaction() { // static attribute used as method is not associated with specific object instance
         // Any processing that needs to be done before method ends
     }
-
 
 }
