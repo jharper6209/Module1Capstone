@@ -8,6 +8,8 @@ import java.util.Scanner;
 
 public class SelectProduct {
 
+}
+/*
     private PrintWriter out;
     private Scanner in;
     private String itemCodes = "A1A2A3A4B1B2B3B4C1C2C3C4D1D2D3D4";
@@ -22,8 +24,7 @@ public class SelectProduct {
 
     public void selectProduct(double currentMoney) throws FileNotFoundException {
 
-        Inventory selectInventory = new Inventory(System.in, System.out);
-        selectInventory.getInventory();
+
 
         System.out.println("\nPlease enter code to select an item.");
         Scanner theKeyboard = new Scanner(System.in);
@@ -86,4 +87,4 @@ public class SelectProduct {
         return newQuantity;
     }
 
-}
+}*/

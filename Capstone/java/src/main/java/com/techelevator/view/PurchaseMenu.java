@@ -59,13 +59,16 @@ public class PurchaseMenu {
 
     public void selectProduct() throws FileNotFoundException {	 // static attribute used as method is not associated with specific object instance
         // Code to select product from Vending Machine inventory
-        SelectProduct myProduct = new SelectProduct(System.in, System.out);
-        myProduct.selectProduct(currentMoney);
-        currentMoney = myProduct.getAmount();
+        //SelectProduct myProduct = new SelectProduct(System.in, System.out);
+       // myProduct.selectProduct(currentMoney);
+        //currentMoney = myProduct.getAmount();
     }
 
     public void finishTransaction() { // static attribute used as method is not associated with specific object instance
-        // Any processing that needs to be done before method ends
+       //double numberOfQuarters = (currentMoney / 0.25);  // Any processing that needs to be done before method ends
+        //double leftoverQuarters = (currentMoney % 0.25);
+        //double numberOfDime = (leftoverQuarters / 0.10);
+        //System.out.println("Here is " + (int)numberOfQuarters);
     }
 
 }

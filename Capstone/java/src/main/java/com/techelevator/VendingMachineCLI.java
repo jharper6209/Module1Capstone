@@ -10,15 +10,19 @@ package com.techelevator;
 *  
 *  Your code vending machine related code should be placed in here
 ***************************************************************************************************************************/
-import com.techelevator.view.Inventory;
-import com.techelevator.view.Menu;         // Gain access to Menu class provided for the Capstone
-import com.techelevator.view.PurchaseMenu;
+import com.techelevator.view.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class VendingMachineCLI {
+
+
+	VendingMachine myVendingMachine;
+	Inventory myInventory;
+
+
 
     // Main menu options defined as constants
 
@@ -61,6 +65,7 @@ public class VendingMachineCLI {
 			switch(choice) {                  // Process based on user menu choice
 			
 				case MAIN_MENU_OPTION_DISPLAY_ITEMS:
+
 					displayItems();           // invoke method to display items in Vending Machine
 					break;                    // Exit switch statement
 			
@@ -81,8 +86,10 @@ public class VendingMachineCLI {
  ********************************************************************************************************/
 	public void displayItems() throws FileNotFoundException {      // static attribute used as method is not associated with specific object instance
 
-		Inventory newInventory = new Inventory(System.in, System.out);					// Code to display items from Vending Machine
-		newInventory.getInventory();
+		//Inventory newInventory = new Inventory(System.in, System.out);					// Code to display items from Vending Machine
+		//newInventory.getInventory();
+
+		//	myVendingMachine.displayItems();
 	}
 	
 	public void purchaseItems() throws FileNotFoundException {	 // static attribute used as method is not associated with specific object instance

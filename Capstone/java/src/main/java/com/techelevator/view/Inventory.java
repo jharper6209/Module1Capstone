@@ -1,14 +1,96 @@
 package com.techelevator.view;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.lang.reflect.Array;
+import java.util.*;
 
 public class Inventory {
+    //      Slot # , Slot
+    private Map<String, Slot> inventoryList;
+
+    public Inventory() throws FileNotFoundException {
+        this.inventoryList = new TreeMap();
+    }
 
 
+    public void stockVendingMachineAtStart() throws FileNotFoundException {
+        File vendingItems = new File("./Capstone/vendingmachine.csv");
+        Scanner invItems = new Scanner(vendingItems);
+        String aLine = "";
+
+        while (invItems.hasNextLine()) {
+            aLine = invItems.nextLine();
+            String[] itemProperties = aLine.split("\\|");
+
+            // Now that we have the data, we have to add it to the Map
+            // The key for the map is slot # - itemProperties[0] - 1st element in the array after split
+            // The value for map is Slot - we have to create the slot
+            // To create Slot we need slot # and price - itemProperties[0] and itemProperties[2]
+            Slot itemSlot = new Slot(itemProperties[0], Double.parseDouble(itemProperties[2]));
+
+            // We need a product to add to the Stack in the Slot
+
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   /* public void stockVendingMachineAtStart() throws FileNotFoundException {
+        File vendingItems = new File("./Capstone/vendingmachine.csv");
+        Scanner invItems = new Scanner(vendingItems);
+        String aLine = "";
+        while (invItems.hasNextLine()) {
+            aLine = invItems.nextLine();
+            String[] itemProperties = aLine.split("\\|");
+            inventoryList.put(itemProperties[0], 5);
+        }
+    }
+
+    public void subtractFromMachineStock(String itemCode) {
+        inventoryList.put(itemCode, inventoryList.get(itemCode) - 1);
+    }
+
+    public int returnCurrentInventory(String itemCode) {
+        return inventoryList.get(itemCode);
+    }
+
+    public Map<String, String[]> itemInMachine() throws FileNotFoundException {
+        String[] itemNameAndPrice;
+        Map<String, String[]> itemNamePrice = new HashMap<>();
+        File vendingItems = new File("./Capstone/vendingmachine.csv");
+        Scanner invItems = new Scanner(vendingItems);
+        String aLine = "";
+        while (invItems.hasNextLine()) {
+            aLine = invItems.nextLine();
+            String[] itemProperties = aLine.split("\\|");
+
+            itemNameAndPrice = new String[]{itemProperties[1], itemProperties[2]};
+            itemNamePrice.put(itemProperties[0], itemNameAndPrice);
+        }
+            return itemNamePrice;
+    }
+
+}
+/*
     private PrintWriter out;
     private Scanner in;
     //private Map<String, Integer> quantityItem = new LinkedHashMap<>();
@@ -63,7 +145,7 @@ public class Inventory {
         this.quantity = quantity;
     }
 }
-
+*/
 
 
 
