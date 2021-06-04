@@ -1,12 +1,11 @@
 package com.techelevator.view;
 
 
+
+
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class VendingMachine {
 
@@ -22,9 +21,40 @@ public class VendingMachine {
     public double getBalance() {
         return balance;
     }
+
+
+    public void displayVendingMachineProducts() throws FileNotFoundException {
+
+        Set<String> theKeys = vendingMachineInventory.mapOfItems().keySet();
+
+        for (String eachKey : theKeys) {
+            if (vendingMachineInventory.mapOfItems().get(eachKey).returnCurrentNumberOfItems() != 0) {
+                System.out.println(eachKey + " " + vendingMachineInventory.mapOfItems().get(eachKey).getTheProducts().peek().getProductName() + " " + vendingMachineInventory.mapOfItems().get(eachKey).getTheProducts().peek().getProductType() + " " + vendingMachineInventory.mapOfItems().get(eachKey).getItemPrice(eachKey) + " Current Quantity: " + vendingMachineInventory.mapOfItems().get(eachKey).returnCurrentNumberOfItems());
+            } else {
+                System.out.println("SOLD OUT");
+
+
+            }
+        }
+    }
+
+    public void purchaseVendingMachineProducts() {
+    }
+
+
+    public int feedMoney() {
+        System.out.println("How much money? (1, 2, 5, 10, 20, 50, or 100)");
+        Scanner theKeyboard = new Scanner(System.in);
+        int fedMoney = 0;
+        String feedMoneyLine = theKeyboard.nextLine();
+        return fedMoney = Integer.parseInt(feedMoneyLine);
+    }
+
+    public int currentMoney() {
+        int currentMoney = 0;
+        return currentMoney;
+    }
 }
-
-
 
 
 
@@ -57,4 +87,4 @@ public class VendingMachine {
     }
 }
 
-
+*/

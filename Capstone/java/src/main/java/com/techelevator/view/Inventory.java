@@ -43,8 +43,15 @@ public class Inventory {
             inventoryList.put(itemProperties[0], itemSlot); // add entry to the map using slot # and slot
                                                             // created
 
+
         }
     }
+
+    public Map<String, Slot> mapOfItems() {
+       return inventoryList;
+    }
+
+
 }
 
 

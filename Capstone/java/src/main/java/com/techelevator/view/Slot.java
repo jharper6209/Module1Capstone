@@ -20,14 +20,23 @@ public class Slot {
         this.theProducts = new Stack();
     }
 
+    public Stack<Product> getTheProducts() {
+        return theProducts;
+    }
 
+    public String getSlotNumber() {
+        return slotNumber;
+    }
 
+    public int returnCurrentNumberOfItems() {
+        return theProducts.size();
+    }
 
-public void addProduct(Product vendingMachineItem) {
+    public void addProduct(Product vendingMachineItem) {
         theProducts.push(vendingMachineItem);
 }
 
-public Product returnProduct() {
+    public Product dispenseProduct() {
         if (theProducts.empty()) {
             return null;
         }
@@ -39,14 +48,14 @@ public Product returnProduct() {
 
 
 
-    public double getItemPrice(Product product) throws FileNotFoundException {
+    public double getItemPrice(String slotNumber) throws FileNotFoundException {
         File vendingMachine = new File("./Capstone/vendingmachine.csv");
         Scanner invItems = new Scanner(vendingMachine);
         String aLine = "";
         while (invItems.hasNextLine()) {
             aLine = invItems.nextLine();
             String[] itemProperties = aLine.split("\\|");
-            if (product.getProductName().equals(itemProperties[1])) {
+            if (slotNumber.equals(itemProperties[0])) {
                 itemPrice = Double.parseDouble(itemProperties[2]);
             }
         }
