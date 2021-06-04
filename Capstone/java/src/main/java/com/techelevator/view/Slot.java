@@ -12,7 +12,7 @@ public class Slot {
     private Stack<Product> theProducts;
     private String slotNumber;
     private double itemPrice;
-    private static int INITIAL_QUANTITY = 5;
+
 
     public Slot(String slotNumber, double itemPrice) {
         this.slotNumber = slotNumber;
