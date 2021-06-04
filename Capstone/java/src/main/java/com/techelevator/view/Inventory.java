@@ -42,8 +42,6 @@ public class Inventory {
             //now we have everything we need to add to our map
             inventoryList.put(itemProperties[0], itemSlot); // add entry to the map using slot # and slot
                                                             // created
-
-
         }
     }
 

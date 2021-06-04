@@ -2,6 +2,7 @@ package com.techelevator.view;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -11,12 +12,12 @@ public class Slot {
 
     private Stack<Product> theProducts;
     private String slotNumber;
-    private double itemPrice;
+    private BigDecimal itemPrice;
 
 
     public Slot(String slotNumber, double itemPrice) {
         this.slotNumber = slotNumber;
-        this.itemPrice = itemPrice;
+        this.itemPrice = new BigDecimal(itemPrice);
         this.theProducts = new Stack();
     }
 
@@ -48,7 +49,7 @@ public class Slot {
 
 
 
-    public double getItemPrice(String slotNumber) throws FileNotFoundException {
+    public BigDecimal getItemPrice(String slotNumber) throws FileNotFoundException {
         File vendingMachine = new File("./Capstone/vendingmachine.csv");
         Scanner invItems = new Scanner(vendingMachine);
         String aLine = "";
@@ -56,7 +57,7 @@ public class Slot {
             aLine = invItems.nextLine();
             String[] itemProperties = aLine.split("\\|");
             if (slotNumber.equals(itemProperties[0])) {
-                itemPrice = Double.parseDouble(itemProperties[2]);
+                itemPrice = BigDecimal.valueOf(Double.parseDouble(itemProperties[2]));
             }
         }
         return itemPrice;

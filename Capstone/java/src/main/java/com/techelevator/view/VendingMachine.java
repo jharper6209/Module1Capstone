@@ -5,21 +5,23 @@ package com.techelevator.view;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 
 public class VendingMachine {
 
     private Inventory vendingMachineInventory;
-    private double balance;
+    private BigDecimal balance;
+
 
     public VendingMachine() throws FileNotFoundException {
         this.vendingMachineInventory = new Inventory();
-        this.balance = 0;
+        this.balance = new BigDecimal(0);
     }
 
-
-    public double getBalance() {
-        return balance;
+    public BigDecimal getBalance() {
+        return balance = balance.setScale(2, RoundingMode.CEILING);
     }
 
 
@@ -32,8 +34,6 @@ public class VendingMachine {
                 System.out.println(eachKey + " " + vendingMachineInventory.mapOfItems().get(eachKey).getTheProducts().peek().getProductName() + " " + vendingMachineInventory.mapOfItems().get(eachKey).getTheProducts().peek().getProductType() + " " + vendingMachineInventory.mapOfItems().get(eachKey).getItemPrice(eachKey) + " Current Quantity: " + vendingMachineInventory.mapOfItems().get(eachKey).returnCurrentNumberOfItems());
             } else {
                 System.out.println("SOLD OUT");
-
-
             }
         }
     }
@@ -41,20 +41,35 @@ public class VendingMachine {
     public void purchaseVendingMachineProducts() {
     }
 
-
-    public int feedMoney() {
+    public BigDecimal feedMoney() {
         System.out.println("How much money? (1, 2, 5, 10, 20, 50, or 100)");
         Scanner theKeyboard = new Scanner(System.in);
-        int fedMoney = 0;
         String feedMoneyLine = theKeyboard.nextLine();
-        return fedMoney = Integer.parseInt(feedMoneyLine);
+        return balance = balance.add(BigDecimal.valueOf(Double.parseDouble(feedMoneyLine)));
     }
 
-    public int currentMoney() {
-        int currentMoney = 0;
-        return currentMoney;
+    public void purchaseItem(String slotNumber) throws FileNotFoundException {
+        if (!vendingMachineInventory.mapOfItems().containsKey(slotNumber)) {
+            System.out.println("Invalid selection, please try again!");
+        } else if (balance.compareTo(vendingMachineInventory.mapOfItems().get(slotNumber).getItemPrice(slotNumber)) == -1) {
+            System.out.println("Insufficient funds, please deposit more money!");
+        } else if (vendingMachineInventory.mapOfItems().get(slotNumber).returnCurrentNumberOfItems() == 0) {
+            System.out.println("SOLD OUT!");
+        } else {
+
+            BigDecimal updatedBalance = balance.subtract(vendingMachineInventory.mapOfItems().get(slotNumber).getItemPrice(slotNumber));
+
+            System.out.println("\nThank you for your purchase!\n");
+            System.out.println(vendingMachineInventory.mapOfItems().get(slotNumber).getTheProducts().peek().getProductName() + " " + vendingMachineInventory.mapOfItems().get(slotNumber).getItemPrice(slotNumber) + " " + updatedBalance);
+            System.out.println(vendingMachineInventory.mapOfItems().get(slotNumber).dispenseProduct().getItemNoise());
+
+            balance = updatedBalance;
+        }
     }
 }
+
+
+
 
 
 

@@ -41,7 +41,8 @@ public class VendingMachineCLI {
 													    MAIN_MENU_OPTION_PURCHASE,
 													    MAIN_MENU_OPTION_EXIT
 													    };
-	
+
+
 	private Menu vendingMenu;              // Menu object to be used by an instance of this class
 	
 	public VendingMachineCLI(Menu menu) throws FileNotFoundException {  // Constructor - user will pass a menu for this class to use
@@ -82,12 +83,11 @@ public class VendingMachineCLI {
 					purchaseItems();          // invoke method to purchase items from Vending Machine
 					while (shouldProcess) {
 
-						System.out.println("Current Money Provided: $");
+						System.out.println("Current Money Provided: $" + myVendingMachine.getBalance());
 						String purchaseMenuChoiceFromOption = (String) vendingMenu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
 
 						switch(purchaseMenuChoiceFromOption) {
 							case PURCHASE_MENU_OPTION_FEED_MONEY:
-
 								feedMoney();
 								break;
 
@@ -139,6 +139,11 @@ public class VendingMachineCLI {
 
 	public void selectProduct() throws FileNotFoundException {	 // static attribute used as method is not associated with specific object instance
 		// Code to select product from Vending Machine inventory
+		myVendingMachine.displayVendingMachineProducts();
+		Scanner theKeyboard = new Scanner(System.in);
+		String userInput = theKeyboard.nextLine();
+		myVendingMachine.purchaseItem(userInput);
+
 	}
 
 	public void finishTransaction() { // static attribute used as method is not associated with specific object instance

@@ -33,7 +33,7 @@ public class Product {
         return productType;
     }
 
-    public void getItemNoise() {
+    public String getItemNoise() {
         itemNoise = "ERROR";
         if (productType.equals("Chip")) {
             itemNoise = "Crunch Crunch, Yum!";
@@ -44,6 +44,7 @@ public class Product {
         } else if (productType.equals("Gum")) {
             itemNoise = "Chew Chew, Yum!";
         }
+        return itemNoise;
     }
 }
 
