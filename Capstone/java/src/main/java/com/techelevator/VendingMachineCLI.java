@@ -81,7 +81,9 @@ public class VendingMachineCLI {
 			
 				case MAIN_MENU_OPTION_PURCHASE:
 					purchaseItems();          // invoke method to purchase items from Vending Machine
-					while (shouldProcess) {
+
+					boolean purchaseProcess = true;
+					while (purchaseProcess) {
 
 						System.out.println("Current Money Provided: $" + myVendingMachine.getBalance());
 						String purchaseMenuChoiceFromOption = (String) vendingMenu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
@@ -97,7 +99,7 @@ public class VendingMachineCLI {
 
 							case PURCHASE_MENU_OPTION_FINISH_TRANSACTION:
 								finishTransaction();
-								shouldProcess = false;
+								purchaseProcess = false;
 								break;
 						}
 					}
@@ -147,9 +149,6 @@ public class VendingMachineCLI {
 	}
 
 	public void finishTransaction() { // static attribute used as method is not associated with specific object instance
-		//double numberOfQuarters = (currentMoney / 0.25);  // Any processing that needs to be done before method ends
-		//double leftoverQuarters = (currentMoney % 0.25);
-		//double numberOfDime = (leftoverQuarters / 0.10);
-		//System.out.println("Here is " + (int)numberOfQuarters);
+		myVendingMachine.completeTransaction();
 	}
 }

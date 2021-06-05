@@ -31,7 +31,7 @@ public class VendingMachine {
 
         for (String eachKey : theKeys) {
             if (vendingMachineInventory.mapOfItems().get(eachKey).returnCurrentNumberOfItems() != 0) {
-                System.out.println(eachKey + " " + vendingMachineInventory.mapOfItems().get(eachKey).getTheProducts().peek().getProductName() + " " + vendingMachineInventory.mapOfItems().get(eachKey).getTheProducts().peek().getProductType() + " " + vendingMachineInventory.mapOfItems().get(eachKey).getItemPrice(eachKey) + " Current Quantity: " + vendingMachineInventory.mapOfItems().get(eachKey).returnCurrentNumberOfItems());
+                System.out.println(eachKey + " " + vendingMachineInventory.mapOfItems().get(eachKey).getTheProducts().peek().getProductName() + " " + vendingMachineInventory.mapOfItems().get(eachKey).getTheProducts().peek().getProductType() + " $" + vendingMachineInventory.mapOfItems().get(eachKey).getItemPrice(eachKey) + " Current Quantity: " + vendingMachineInventory.mapOfItems().get(eachKey).returnCurrentNumberOfItems());
             } else {
                 System.out.println("SOLD OUT");
             }
@@ -41,11 +41,15 @@ public class VendingMachine {
     public void purchaseVendingMachineProducts() {
     }
 
-    public BigDecimal feedMoney() {
-        System.out.println("How much money? (1, 2, 5, 10, 20, 50, or 100)");
+    public void feedMoney() {
+        System.out.println("How much money ($)? (1, 2, 5, 10, 20, 50, or 100)");
         Scanner theKeyboard = new Scanner(System.in);
         String feedMoneyLine = theKeyboard.nextLine();
-        return balance = balance.add(BigDecimal.valueOf(Double.parseDouble(feedMoneyLine)));
+        if (feedMoneyLine.equals("1") || feedMoneyLine.equals("2") || feedMoneyLine.equals("5") || feedMoneyLine.equals("10") || feedMoneyLine.equals("20") || feedMoneyLine.equals("50") || feedMoneyLine.equals("100")) {
+            balance = balance.add(BigDecimal.valueOf(Double.parseDouble(feedMoneyLine)));
+        } else {
+            System.out.println("Invalid amount, please specify again");
+        }
     }
 
     public void purchaseItem(String slotNumber) throws FileNotFoundException {
@@ -59,12 +63,35 @@ public class VendingMachine {
 
             BigDecimal updatedBalance = balance.subtract(vendingMachineInventory.mapOfItems().get(slotNumber).getItemPrice(slotNumber));
 
-            System.out.println("\nThank you for your purchase!\n");
-            System.out.println(vendingMachineInventory.mapOfItems().get(slotNumber).getTheProducts().peek().getProductName() + " " + vendingMachineInventory.mapOfItems().get(slotNumber).getItemPrice(slotNumber) + " " + updatedBalance);
+            System.out.println("\nThank you for your purchase!");
+            System.out.println(vendingMachineInventory.mapOfItems().get(slotNumber).getTheProducts().peek().getProductName() + " $" + vendingMachineInventory.mapOfItems().get(slotNumber).getItemPrice(slotNumber) + " $" + updatedBalance);
             System.out.println(vendingMachineInventory.mapOfItems().get(slotNumber).dispenseProduct().getItemNoise());
 
             balance = updatedBalance;
         }
+    }
+
+    public void completeTransaction() {
+        System.out.println("\nThank you for your purchase!");
+        double remainderQuarter, remainderDime;
+        double dbBalance = balance.doubleValue();
+
+        int quartersToReturn = (int) (dbBalance / (0.25));
+        remainderQuarter = dbBalance % 0.25;
+        remainderQuarter = remainderQuarter * 100;
+        remainderQuarter = Math.round(remainderQuarter);
+        remainderQuarter = remainderQuarter / 100;
+
+        int dimeToReturn = (int) (remainderQuarter / 0.10);
+        remainderDime = remainderQuarter % 0.10;
+        remainderDime = remainderDime * 100;
+        remainderDime = Math.round(remainderDime);
+        remainderDime = remainderDime / 100;
+
+        int nickelToReturn = (int) (remainderDime / 0.05);
+
+        System.out.println("Current Balance is : $0.00");
+        System.out.println("Your change is :" + quartersToReturn + " Quarter(s), " +  dimeToReturn + " Dime(s), " + nickelToReturn + " Nickel(s) .");
     }
 }
 
