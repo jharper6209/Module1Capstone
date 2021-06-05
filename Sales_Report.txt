@@ -1,5 +1,19 @@
-Heavy|1|1.5
-Grain Waves|1|2.75
-Chiclets|1|0.75
-Grain Waves|2|2.75
-Wonka Bar|1|1.5
+Potato Crisps|2
+Stackers|0
+Grain Waves|0
+Cloud Popcorn|0
+Moonpie|1
+Cowtales|0
+Wonka Bar|0
+Crunchie|1
+Cola|1
+Dr. Salt|0
+Mountain Melter|0
+Heavy|1
+U-Chews|0
+Little League|0
+Chiclets|0
+Triplemint|3
+
+Sales On: 06/05/2021 02:47 PM
+Total Sales: $14.65

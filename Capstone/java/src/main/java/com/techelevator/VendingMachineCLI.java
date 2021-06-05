@@ -132,8 +132,9 @@ public class VendingMachineCLI {
 		myVendingMachine.purchaseVendingMachineProducts();
 	}
 	
-	public void endMethodProcessing() { // static attribute used as method is not associated with specific object instance
+	public void endMethodProcessing() throws IOException { // static attribute used as method is not associated with specific object instance
 		// Any processing that needs to be done before method ends
+		myVendingMachine.viewSalesReport();
 		System.out.println("\n$$$$$$$$$$$$$$$$");
 		System.out.println("HAVE A NICE DAY!");
 		System.out.println("$$$$$$$$$$$$$$$$");
