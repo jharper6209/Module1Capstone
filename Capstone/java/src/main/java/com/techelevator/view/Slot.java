@@ -45,10 +45,6 @@ public class Slot {
 }
 
 
-
-
-
-
     public BigDecimal getItemPrice(String slotNumber) throws FileNotFoundException {
         File vendingMachine = new File("./Capstone/vendingmachine.csv");
         Scanner invItems = new Scanner(vendingMachine);
@@ -63,51 +59,8 @@ public class Slot {
         return itemPrice;
     }
 
-    /*public Map<String, Integer> getProductCodeAndQuantity() throws FileNotFoundException {
-        File vendingMachine = new File("./Capstone/vendingmachine.csv");
-        Scanner invItems = new Scanner(vendingMachine);
-        String aLine = "";
-
-        while (invItems.hasNextLine()) {
-            aLine = invItems.nextLine();
-            String[] itemProperties = aLine.split("\\|");
-            if (itemCode.equals(itemProperties[0])) {
-                productCodeAndQuantity.put(itemCode, INITIAL_QUANTITY);
-            }
-        }
-        return productCodeAndQuantity;
+    public BigDecimal getTheItemPrice() {
+        return itemPrice;
     }
-*/}
+}
 
-/*        public Map<String, Integer> displayProductCodeAndQuantity() throws FileNotFoundException {
-        File vendingMachine = new File("./Capstone/vendingmachine.csv");
-        Scanner invItems = new Scanner(vendingMachine);
-        String aLine = "";
-        while (invItems.hasNextLine()) {
-            aLine = invItems.nextLine();
-            String[] itemProperties = aLine.split("\\|");
-            productCodeAndQuantity.put(itemProperties[0], INITIAL_QUANTITY);
-        }
-        return productCodeAndQuantity;
-    }
-
-    public Map<String, Double> displayProductCodeAndPrice() throws FileNotFoundException {
-        File vendingMachine = new File("./Capstone/vendingmachine.csv");
-        Scanner invItems = new Scanner(vendingMachine);
-        String aLine = "";
-        while (invItems.hasNextLine()) {
-            aLine = invItems.nextLine();
-            String[] itemProperties = aLine.split("\\|");
-            productCodeAndPrice.put(itemProperties[0], Double.parseDouble(itemProperties[2]));
-        }
-        return productCodeAndPrice;
-    }
-
-    public Map<String, Integer> getProductCodeAndQuantity() {
-        return productCodeAndQuantity;
-    }
-
-    public Map<String, Double> getProductCodeAndPrice() {
-        return productCodeAndPrice;
-    }
-*/

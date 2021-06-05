@@ -1,0 +1,5 @@
+Heavy|1|1.5
+Grain Waves|1|2.75
+Chiclets|1|0.75
+Grain Waves|2|2.75
+Wonka Bar|1|1.5

@@ -14,6 +14,7 @@ import com.techelevator.view.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class VendingMachineCLI {
@@ -29,6 +30,7 @@ public class VendingMachineCLI {
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
 	private static final String MAIN_MENU_OPTION_PURCHASE      = "Purchase";
 	private static final String MAIN_MENU_OPTION_EXIT          = "Exit";
+	private static final String MAIN_MENU_SALES_REPORT		   = "Sales Report";
 
 	private static final String PURCHASE_MENU_OPTION_FEED_MONEY = "Feed Money";
 	private static final String PURCHASE_MENU_OPTION_SELECT_PRODUCT      = "Select Product";
@@ -39,15 +41,16 @@ public class VendingMachineCLI {
 			PURCHASE_MENU_OPTION_FINISH_TRANSACTION};
 	private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS,
 													    MAIN_MENU_OPTION_PURCHASE,
-													    MAIN_MENU_OPTION_EXIT
+													    MAIN_MENU_OPTION_EXIT, MAIN_MENU_SALES_REPORT
 													    };
 
 
 	private Menu vendingMenu;              // Menu object to be used by an instance of this class
 	
-	public VendingMachineCLI(Menu menu) throws FileNotFoundException {  // Constructor - user will pass a menu for this class to use
+	public VendingMachineCLI(Menu menu) throws IOException {  // Constructor - user will pass a menu for this class to use
 		this.vendingMenu = menu;           // Make the Menu the user object passed, our Menu
 		this.myVendingMachine = new VendingMachine();
+		myVendingMachine.clearSalesFile();
 	}
 	/**************************************************************************************************************************
 	*  VendingMachineCLI main processing loop
@@ -63,7 +66,7 @@ public class VendingMachineCLI {
 	*
 	***************************************************************************************************************************/
 
-	public void run() throws FileNotFoundException {
+	public void run() throws IOException {
 		
 		
 		boolean shouldProcess = true;         // Loop control variable
@@ -104,11 +107,15 @@ public class VendingMachineCLI {
 						}
 					}
 					break;                    // Exit switch statement
-			
+
 				case MAIN_MENU_OPTION_EXIT:
 					endMethodProcessing();    // Invoke method to perform end of method processing
 					shouldProcess = false;    // Set variable to end loop
 					break;                    // Exit switch statement
+
+				case MAIN_MENU_SALES_REPORT:
+					pullSalesReport();    // Invoke method to perform end of method processing
+					break;
 			}	
 		}
 		return;                               // End method and return to caller
@@ -118,37 +125,38 @@ public class VendingMachineCLI {
  ********************************************************************************************************/
 	public void displayItems() throws FileNotFoundException {      // static attribute used as method is not associated with specific object instance
 		myVendingMachine.displayVendingMachineProducts();
-
 	}
 	
 	public void purchaseItems() throws FileNotFoundException {	 // static attribute used as method is not associated with specific object instance
 		// Code to purchase items from Vending Machine
 		myVendingMachine.purchaseVendingMachineProducts();
-
 	}
 	
 	public void endMethodProcessing() { // static attribute used as method is not associated with specific object instance
 		// Any processing that needs to be done before method ends
-		System.out.println("$$$$$$$$$$$$$$$$");
+		System.out.println("\n$$$$$$$$$$$$$$$$");
 		System.out.println("HAVE A NICE DAY!");
 		System.out.println("$$$$$$$$$$$$$$$$");
 	}
 
-	public void feedMoney() {      // static attribute used as method is not associated with specific object instance
+	public void feedMoney() throws IOException {      // static attribute used as method is not associated with specific object instance
 		// Code to feed money
 		myVendingMachine.feedMoney();
 	}
 
-	public void selectProduct() throws FileNotFoundException {	 // static attribute used as method is not associated with specific object instance
+	public void selectProduct() throws IOException {	 // static attribute used as method is not associated with specific object instance
 		// Code to select product from Vending Machine inventory
 		myVendingMachine.displayVendingMachineProducts();
 		Scanner theKeyboard = new Scanner(System.in);
 		String userInput = theKeyboard.nextLine();
 		myVendingMachine.purchaseItem(userInput);
-
 	}
 
-	public void finishTransaction() { // static attribute used as method is not associated with specific object instance
+	public void finishTransaction() throws IOException { // static attribute used as method is not associated with specific object instance
 		myVendingMachine.completeTransaction();
+	}
+
+	public void pullSalesReport() throws IOException {
+		myVendingMachine.viewSalesReport();
 	}
 }
