@@ -1,19 +1,19 @@
-Potato Crisps|2
+Potato Crisps|0
 Stackers|0
 Grain Waves|0
 Cloud Popcorn|0
-Moonpie|1
+Moonpie|0
 Cowtales|0
 Wonka Bar|0
-Crunchie|1
-Cola|1
+Crunchie|0
+Cola|0
 Dr. Salt|0
 Mountain Melter|0
-Heavy|1
+Heavy|0
 U-Chews|0
 Little League|0
 Chiclets|0
-Triplemint|3
+Triplemint|0
 
-Sales On: 06/05/2021 02:47 PM
-Total Sales: $14.65
+Sales On: 06/07/2021 04:00 PM
+Total Sales: $0.00
